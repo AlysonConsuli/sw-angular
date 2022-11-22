@@ -23,7 +23,10 @@ export class StarWarsService {
     this.http.get(this.URL).subscribe(
       (response: any) => {
         console.log(response)
-        this.characters = response.results;
+        const data = response.results.map((char: any) => {
+          return {name: char.name, side: ''}
+        })
+        this.characters = data;
         this.charactersChanged.next();
       }
     )

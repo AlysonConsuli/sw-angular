@@ -28,4 +28,14 @@ export class StarWarsService {
     })
     this.characters[pos].side = charInfo.side
   }
+
+  addCharacter(char: any){
+    const nameConflict = this.characters.find((character) => {
+      return char.name === character.name;
+    })
+    if (nameConflict) {
+      return;
+    }
+    this.characters.push(char)
+  }
 }

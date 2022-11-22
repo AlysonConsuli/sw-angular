@@ -1,6 +1,6 @@
 export class LogService {
 
-  WriteLog(txt: any){
+  writeLog(txt: any){
     console.log(txt)
   }
 }

@@ -1,5 +1,14 @@
-<h1>Characters</h1>
-<button [ngClass]="{btn: chosenList === 'all'}" (click)="onChoose('all')">All</button>
-<button [ngClass]="{btn: chosenList === 'light'}" (click)="onChoose('light')">Light</button>
-<button [ngClass]="{btn: chosenList === 'dark'}" (click)="onChoose('dark')">Dark</button>
-<app-list [characters]="getCharacters()"></app-list>
+<div>
+  <ul class="nav nav-tabs">
+    <li role="presentation" routerLinkActive="active">
+      <a routerLink="/characters/all">All</a>
+      </li>
+    <li role="presentation" routerLinkActive="active">
+      <a routerLink="/characters/light">Light</a>
+      </li>
+    <li role="presentation" routerLinkActive="active">
+      <a routerLink="/characters/dark">Dark</a>
+      </li>
+  </ul>
+  <router-outlet></router-outlet>
+</div>

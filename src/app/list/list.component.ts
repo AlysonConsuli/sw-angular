@@ -1,21 +1,28 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { LogService } from '../log.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { StarWarsService } from '../star-wars.service';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
-export class ListComponent {
-  @Input() characters: any
-  logService: LogService
+export class ListComponent implements OnInit {
+  characters: any = []
+  activatedRoute: ActivatedRoute;
+  swService: StarWarsService;
 
-  constructor(logService: LogService){
-    this.logService = logService
+  constructor(activatedRoute: ActivatedRoute, swService: StarWarsService){
+    this.activatedRoute = activatedRoute
+    this.swService = swService
   }
 
-  getConsole(){
-    this.logService.WriteLog(this.characters)
+  ngOnInit(): void {
+    this.activatedRoute.params.subscribe(
+      (params: any) => {
+        this.characters = this.swService.getCharacters(params.side)
+      }
+    )
   }
 
 }

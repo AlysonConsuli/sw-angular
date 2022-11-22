@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
+import { LogService } from './log.service';
 
 @Injectable()
 export class StarWarsService {
-  characters = [
+  private characters = [
     {name: "Luke", side: ""},
     {name: "Vader", side: ""}
   ];
+  private logService: LogService
 
-  constructor() { }
+  constructor(logService: LogService) {
+    this.logService = logService
+   }
 
   getCharacters(chosenList: string){
     if(chosenList === 'all'){

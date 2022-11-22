@@ -3,16 +3,24 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { TabsComponent } from './tabs/tabs.component';
+import { ListComponent } from './list/list.component';
+import { ItemComponent } from './item/item.component';
+import { LogService } from './log.service';
+import { StarWarsService } from './star-wars.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TabsComponent,
+    ListComponent,
+    ItemComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [StarWarsService ,LogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

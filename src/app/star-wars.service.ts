@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { LogService } from './log.service';
+import { HttpClient, HttpResponse } from '@angular/common/http'
 
 @Injectable()
 export class StarWarsService {
@@ -10,10 +11,23 @@ export class StarWarsService {
   ];
   private logService: LogService
   charactersChanged = new Subject<void>()
+  http: HttpClient
+  URL = 'https://pokeapi.co/api/v2/pokemon'
 
-  constructor(logService: LogService) {
+  constructor(logService: LogService, http: HttpClient) {
     this.logService = logService
+    this.http = http
    }
+
+  fetchCharacters(){
+    this.http.get(this.URL).subscribe(
+      (response: any) => {
+        console.log(response)
+        this.characters = response.results;
+        this.charactersChanged.next();
+      }
+    )
+  }
 
   getCharacters(chosenList: string){
     if(chosenList === 'all'){
